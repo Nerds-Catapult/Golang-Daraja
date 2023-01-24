@@ -1,9 +1,7 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 /* Import components */
-// import { Home} from "./pages";
-import Home from "./pages/Home";
-import CreatePost from "./pages/CreatePost";
+import { Home, CreatePost} from "./pages";
 import { logo } from "./assets";
 
 
