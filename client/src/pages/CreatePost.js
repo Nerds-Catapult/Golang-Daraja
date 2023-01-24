@@ -12,6 +12,9 @@ const CreatePost = () => {
     //   setGenerateImg(true);
     // }, 2000);
   };
+  const handleChange = (e) => {
+    
+  }
   const navigate = useNavigate();
   const [form, setForm] = React.useState({
     name: '',
@@ -31,9 +34,20 @@ const CreatePost = () => {
           by Dawnix-AI
         </p>
       </div>
-      <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}></form>
+      <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
+        <div className='flex flex-col gap-5'>
+          <FormField
+            placeholder='Enter your name'
+            value={form.name}
+            LabelName='name'
+            type='text'
+            name='name'
+            handleChange={handleSubmit}
+          />
+        </div>
+      </form>
     </section>
-    )
+  )
 }
 
 export default CreatePost
