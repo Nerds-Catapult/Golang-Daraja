@@ -5,15 +5,13 @@ import { getRandomPrompt } from '../utils';
 import { FormField, Loader } from '../components';
 const CreatePost = () => {
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // setLoading(true);
-    // setTimeout(() => {
-    //   setLoading(false);
-    //   setGenerateImg(true);
-    // }, 2000);
+    
   };
   const handleChange = (e) => {
     
+  }
+  const handleSurpriseMe = () => { 
+
   }
   const navigate = useNavigate();
   const [form, setForm] = React.useState({
@@ -42,7 +40,17 @@ const CreatePost = () => {
             LabelName='name'
             type='text'
             name='name'
-            handleChange={handleSubmit}
+            handleChange={handleChange}
+          />
+          <FormField
+            placeholder='A cat smiling'
+            value={form.prompt}
+            LabelName='prompt'
+            type='text'
+            name='prompt'
+            handleChange={handleChange}
+            isSurpriseMe
+            handleSurpriseMe = {handleSurpriseMe}
           />
         </div>
       </form>
