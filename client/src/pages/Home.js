@@ -42,7 +42,17 @@ const Home = () => {
               </h2>
               )}
               <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
-                
+                {searchText ? (
+                  <RenderCards
+                    data=" Search Results"
+                    title="No Search Results"
+                  />
+                ) : (
+                    <RenderCards
+                      data="All Posts"
+                      title="No Posts Found"
+                    />
+                )}
               </div>
           </>
         )}
