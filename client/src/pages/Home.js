@@ -38,23 +38,23 @@ const Home = () => {
           </div>
         ) : (
           <>
-              {searchText &&( <h2 className='font-medium text-[#666e75] text-xl mb-3'>
-                Search Results for <span className='text-[#222328]'>{searchText}</span>
-              </h2>
+            {searchText && (<h2 className='font-medium text-[#666e75] text-xl mb-3'>
+              Search Results for <span className='text-[#222328]'>{searchText}</span>
+            </h2>
+            )}
+            <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
+              {searchText ? (
+                <RenderCards
+                  data={[]}
+                  title="No Search Results"
+                />
+              ) : (
+                <RenderCards
+                  data={[]}
+                  title="No Posts Found"
+                />
               )}
-              <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
-                {searchText ? (
-                  <RenderCards
-                    data={[]}
-                    title="No Search Results"
-                  />
-                ) : (
-                    <RenderCards
-                      data={[]}
-                      title="No Posts Found"
-                    />
-                )}
-              </div>
+            </div>
           </>
         )}
       </div>
