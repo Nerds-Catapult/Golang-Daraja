@@ -77,7 +77,7 @@ const CreatePost = () => {
         </div>
         <div className='mt-10'>
           <p className='mt-2 text-[#666e75] text-[14px]'>Wanna share your image with community? </p>
-          
+          <button type='button' className='mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'>Share With Community</button>
         </div>
       </form>
     </section>
