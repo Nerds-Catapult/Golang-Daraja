@@ -52,6 +52,13 @@ const CreatePost = () => {
             isSurpriseMe
             handleSurpriseMe = {handleSurpriseMe}
           />
+          <div className="relative bg-gray-50 border borser-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
+            {form.photo ? (
+              <img src={form.photo}
+                alt={form.prompt}
+                className="w-full h-full object-contain" />
+            ) : (<img src={preview} alt='Preview' className='w-9/12 h-9/12 object-contain opacity-40'/>)}
+          </div>
         </div>
       </form>
     </section>
