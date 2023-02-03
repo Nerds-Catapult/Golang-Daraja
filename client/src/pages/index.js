@@ -1,9 +1,7 @@
-// render element
-import Home from "./Home";
-import CreatePost from "./CreatePost";
-
+import Home from './Home';
+import CreatePost from './CreatePost';
 
 export {
-    Home,
-    CreatePost
-}
+  Home,
+  CreatePost,
+};
