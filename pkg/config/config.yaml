@@ -1,0 +1,4 @@
+environment: development
+http_port: 8080
+grpc_port: 50051
+consumer_key: "consumer"
