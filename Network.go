@@ -119,3 +119,8 @@ func newRequest[T any](pac *networkPackage) (*networkResponse[T], *ErrorResponse
 	}
 	return netResponseHolder, nil
 }
+
+func performSecurePostRequest[T any](payload interface{}, endpoint string, d *Daraja) (*networkResponse[T], *ErrorResponse){
+	var headers = make(map[string]string)
+	if d.authorization.
+}

@@ -22,5 +22,40 @@ type Daraja struct {
 
 type darajaApiInterface interface {
 	Authorize() (*Authorization, error)
+	ReverseTransaction(transaction ReversalPayload) (*ReversalResponse, *ErrorResponse)
+	MakeSTKPushRequest(mpesaConfig LipaNaMpesaPayload) (*LipaNaMpesaResponse, *ErrorResponse)
+	MakeB2BPaymentRequest(b2bPayment B2BPaymentPayload) (*B2BPaymentResponse, *ErrorResponse)
+	MakeB2CPaymentRequest(b2CPayment B2CPaymentPayload) (*B2CPaymentResponse, *ErrorResponse)
+	MakeQRCodeRequest(payload QRCodePayload) (*QRCodeResponse, *ErrorResponse)
+	MakeC2BPayment(c2b C2BPaymentPayload) (*C2BResponse, *ErrorResponse)
+	MakeC2BPaymentV2(c2b C2BPaymentPayload) (*C2BResponse, *ErrorResponse)
+}
 
+var darajaAPI * Daraja
+
+func NewDaraja(consumerKey, consumerSecret string, env Environment) *Daraja {
+	if darajaAPI == nil {
+		darajaAPI = &Daraja{
+			ConsumerKey: consumerKey,
+			ConsumerSecret: consumerSecret,
+			environment: env,
+		}
+	}
+	return darajaAPI
+}
+
+func (d *Daraja) Authorize() (*Authorization, error) {
+	authTimeStart := time.Now()
+	auth, err := NewAuthorization(d.ConsumerKey, d.ConsumerSecret, d.environment)
+	if err != nil {
+		return nil, err
+	}
+	expiry, err := time.ParseDuration(auth.Response.ExpiresIn + "s")
+	if err != nil {
+		return nil, err
+	}
+	d.nextAuthorizationTime = authTimeStart.Add(expiry)
+	d.authorization = *auth
+
+	return auth, nil
 }
