@@ -27,7 +27,7 @@ type darajaApiInterface interface {
 	MakeB2BPaymentRequest(b2bPayment B2BPaymentPayload) (*B2BPaymentResponse, *ErrorResponse)
 	MakeB2CPaymentRequest(b2CPayment B2CPaymentPayload) (*B2CPaymentResponse, *ErrorResponse)
 	MakeQRCodeRequest(payload QRCodePayload) (*QRCodeResponse, *ErrorResponse)
-	MakeC2BPayment(c2b C2BPaymentPayload) (*C2BResponse, *ErrorResponse)
+	MakeC2BPayload(c2b C2BPayload) (*C2BResponse, *ErrorResponse)
 	MakeC2BPaymentV2(c2b C2BPaymentPayload) (*C2BResponse, *ErrorResponse)
 }
 
