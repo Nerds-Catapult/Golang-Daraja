@@ -22,13 +22,13 @@ type Daraja struct {
 
 type darajaApiInterface interface {
 	Authorize() (*Authorization, error)
-	ReverseTransaction(transaction ReversalPayload) (*ReversalResponse, *ErrorResponse)
+	ReverseTransaction(transaction ReversePayload) (*ReversalResponse, *ErrorResponse)
 	MakeSTKPushRequest(mpesaConfig LipaNaMpesaPayload) (*LipaNaMpesaResponse, *ErrorResponse)
 	MakeB2BPaymentRequest(b2bPayment B2BPaymentPayload) (*B2BPaymentResponse, *ErrorResponse)
 	MakeB2CPaymentRequest(b2CPayment B2CPaymentPayload) (*B2CPaymentResponse, *ErrorResponse)
-	MakeQRCodeRequest(payload QRCodePayload) (*QRCodeResponse, *ErrorResponse)
+	MakeQRCodeRequest(payload QrPayload) (*QrResponse, *ErrorResponse)
 	MakeC2BPayload(c2b C2BPayload) (*C2BResponse, *ErrorResponse)
-	MakeC2BPaymentV2(c2b C2BPaymentPayload) (*C2BResponse, *ErrorResponse)
+	MakeC2BPaymentV2(c2b C2BPayload) (*C2BResponse, *ErrorResponse)
 }
 
 var darajaAPI * Daraja
