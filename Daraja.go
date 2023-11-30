@@ -50,7 +50,7 @@ func (d *Daraja) Authorize() (*Authorization, error) {
 	if err != nil {
 		return nil, err
 	}
-	expiry, err := time.ParseDuration(auth.Response.ExpiresIn + "s")
+	expiry, err := time.ParseDuration(auth.ExpiresIn + "s")
 	if err != nil {
 		return nil, err
 	}
