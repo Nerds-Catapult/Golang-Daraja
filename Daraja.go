@@ -15,12 +15,12 @@ type Environment string
 type Daraja struct {
 	authorization Authorization
 	environment Environment
-	nextAuthorizationTime time.Time
+	nextAuthTime time.Time
 	ConsumerKey string
 	ConsumerSecret string
 }
 
-type darajaApiInterface interface {
+type darajaApiImpl interface {
 	Authorize() (*Authorization, error)
 	ReverseTransaction(transaction ReversePayload) (*ReversalResponse, *ErrorResponse)
 	MakeSTKPushRequest(mpesaConfig LipaNaMpesaPayload) (*LipaNaMpesaResponse, *ErrorResponse)
@@ -54,7 +54,7 @@ func (d *Daraja) Authorize() (*Authorization, error) {
 	if err != nil {
 		return nil, err
 	}
-	d.nextAuthorizationTime = authTimeStart.Add(expiry)
+	d.nextAuthTime = authTimeStart.Add(expiry)
 	d.authorization = *auth
 
 	return auth, nil

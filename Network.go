@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 type networkPackage struct {
@@ -122,5 +123,24 @@ func newRequest[T any](pac *networkPackage) (*networkResponse[T], *ErrorResponse
 
 func performSecurePostRequest[T any](payload interface{}, endpoint string, d *Daraja) (*networkResponse[T], *ErrorResponse){
 	var headers = make(map[string]string)
-	if d.authorization.AccessTokens == ""
+	if d.authorization.AccessToken == "" {
+		_, err := d.Authorize()
+		if err != nil {
+			return nil, &ErrorResponse{error: err}
+		}
+	}
+	if time.Now().After(d.nextAuthTime) {
+		_, err := d.Authorize()
+		if err != nil {
+			return nil, &ErrorResponse{error: err}
+		}
+	}
+
+	headers["Authorization"] = "Bearer " + d.authorization.AccessToken
+	netPackage := newRequestPackage(payload, endpoint, http.MethodPost, headers, d.environment)
+	newResponse, err := newRequest[T](netPackage)
+	if err != nil {
+		return nil, err
+	}
+	return newResponse, nil
 }

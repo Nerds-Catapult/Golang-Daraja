@@ -21,14 +21,14 @@ type B2BPaymentResponse struct {
 }
 
 
-func (d* Daraja) MakeB2BPaymentRequest(b2c B2BPaymentPayload, certPath string) (*B2CPaymentRequest, *ErrorResponse){
+func (d* Daraja) MakeB2BPaymentRequest(b2c B2BPaymentPayload, certPath string) (*B2CPaymentResponse, *ErrorResponse){
 	b2c.CommandID = "BusinessPayment"
 	encryptedCredentials, err := openSSlEncrypt(b2c.Passkey, certPath)
 	if err != nil {
 		return nil, &ErrorResponse{error: err}
 	}
 	b2c.Passkey = encryptedCredentials
-	secureResponse, errRes := performSecurePostRequest[*B2BPaymentResponse](b2c, endpointB2CPmtReq, d)
+	secureResponse, errRes := performSecurePostRequest[*B2CPaymentResponse](b2c, endpointB2CPmtReq, d)
 	if err != nil {
 		return nil, errRes
 	}
