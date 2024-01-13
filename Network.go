@@ -11,14 +11,14 @@ import (
 )
 
 type networkPackage struct {
-	Payload interface{}
+	Payload  interface{}
 	Endpoint string
-	Method string
-	Headers map[string]string
+	Method   string
+	Headers  map[string]string
 }
 
 type networkResponse[T any] struct {
-	Body T
+	Body       T
 	StatusCode int
 }
 
@@ -45,10 +45,10 @@ func newRequestPackage(payload interface{}, endpoint string, method string, head
 		}
 	}
 	return &networkPackage{
-		Payload: payload,
+		Payload:  payload,
 		Endpoint: reqUrl,
-		Method: method,
-		Headers: headers,
+		Method:   method,
+		Headers:  headers,
 	}
 }
 
@@ -59,7 +59,7 @@ func (p *networkPackage) addHeader(key string, value string) {
 	p.Headers[key] = value
 }
 
-func newRequest[T any](pac *networkPackage) (*networkResponse[T], *ErrorResponse){
+func newRequest[T any](pac *networkPackage) (*networkResponse[T], *ErrorResponse) {
 	netResponseHolder := &networkResponse[T]{}
 	client := &http.Client{}
 	var jsonDataBytes []byte
@@ -89,7 +89,7 @@ func newRequest[T any](pac *networkPackage) (*networkResponse[T], *ErrorResponse
 	}(resp.Body)
 	netResponseHolder.StatusCode = resp.StatusCode
 	if netResponseHolder.StatusCode >= 400 {
-		if resp.Body != nil{
+		if resp.Body != nil {
 			var errorResponse ErrorResponse
 			body, err := io.ReadAll(resp.Body)
 			if err != nil {
@@ -121,7 +121,7 @@ func newRequest[T any](pac *networkPackage) (*networkResponse[T], *ErrorResponse
 	return netResponseHolder, nil
 }
 
-func performSecurePostRequest[T any](payload interface{}, endpoint string, d *Daraja) (*networkResponse[T], *ErrorResponse){
+func performSecurePostRequest[T any](payload interface{}, endpoint string, d *Daraja) (*networkResponse[T], *ErrorResponse) {
 	var headers = make(map[string]string)
 	if d.authorization.AccessToken == "" {
 		_, err := d.Authorize()

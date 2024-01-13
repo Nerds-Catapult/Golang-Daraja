@@ -1,26 +1,26 @@
 package darajaAuth
 
 type ReversePayload struct {
-	Initiator string `json:"Initiator"`
-	PassKey string `json:"PassKey"`
-	CommandID string `json:"CommandID"`
-	TransactionID string `json:"TransactionID"`
-	Amount string `json:"Amount"`
-	ReceiverParty string `json:"ReceiverParty"`
+	Initiator              string `json:"Initiator"`
+	PassKey                string `json:"PassKey"`
+	CommandID              string `json:"CommandID"`
+	TransactionID          string `json:"TransactionID"`
+	Amount                 string `json:"Amount"`
+	ReceiverParty          string `json:"ReceiverParty"`
 	RecieverIdentifierType string `json:"RecieverIdentifierType"`
-	ResultURL string `json:"ResultURL"`
-	QueueTimeOutURL string `json:"QueueTimeOutURL"`
-	Remarks string `json:"Remarks"`
-	Occasion string `json:"Occasion"`
+	ResultURL              string `json:"ResultURL"`
+	QueueTimeOutURL        string `json:"QueueTimeOutURL"`
+	Remarks                string `json:"Remarks"`
+	Occasion               string `json:"Occasion"`
 }
 
 type ReversalResponse struct {
 	OriginatorConversationID string `json:"OriginatorConversationID"`
-	ConversationID string `json:"ConversationID"`
-	ResponseDescription string `json:"ResponseDescription"`
+	ConversationID           string `json:"ConversationID"`
+	ResponseDescription      string `json:"ResponseDescription"`
 }
 
-func (d *Daraja) ReverseTransaction(transaction ReversePayload, certPath string) (*ReversalResponse, *ErrorResponse){
+func (d *Daraja) ReverseTransaction(transaction ReversePayload, certPath string) (*ReversalResponse, *ErrorResponse) {
 	transaction.CommandID = "TransactionReversal"
 	encryptedCredential, err := openSSlEncrypt(transaction.PassKey, certPath)
 	if err != nil {

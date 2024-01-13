@@ -2,9 +2,10 @@ package darajaAuth
 
 import (
 	"encoding/base64"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 const (
@@ -28,37 +29,37 @@ type LipaNaMpesaPayload struct {
 }
 
 type LipaNaMpesaResponse struct {
-	MerchantRequestID string `json:"MerchantRequestID"`
-	CheckoutRequestID string `json:"CheckoutRequestID"`
-	ResponseCode string `json:"ResponseCode"`
+	MerchantRequestID   string `json:"MerchantRequestID"`
+	CheckoutRequestID   string `json:"CheckoutRequestID"`
+	ResponseCode        string `json:"ResponseCode"`
 	ResponseDescription string `json:"ResponseDescription"`
-	CustomerMessage string `json:"CustomerMessage"`
+	CustomerMessage     string `json:"CustomerMessage"`
 }
 
 type STKPushStatusPayload struct {
 	BusinessShortCode string `json:"BusinessShortCode"`
-	Password string `json:"Password"`
-	Timestamp string `json:"Timestamp"`
+	Password          string `json:"Password"`
+	Timestamp         string `json:"Timestamp"`
 	CheckoutRequestID string `json:"CheckoutRequestID"`
 }
 
 type STKPushStatusResponse struct {
-	MerchantRequestID string `json:"MerchantRequestID"`
-	CheckoutRequestID string `json:"CheckoutRequestID"`
-	ResponseCode string `json:"ResponseCode"`
+	MerchantRequestID   string `json:"MerchantRequestID"`
+	CheckoutRequestID   string `json:"CheckoutRequestID"`
+	ResponseCode        string `json:"ResponseCode"`
 	ResponseDescription string `json:"ResponseDescription"`
-	ResultDesc string `json:"ResultDesc"`
-	ResultCode string `json:"ResultCode"`
+	ResultDesc          string `json:"ResultDesc"`
+	ResultCode          string `json:"ResultCode"`
 }
 type CallBackResponse struct {
 	Body struct {
 		StkCallBack struct {
 			MerchantRequestID string `json:"MerchantRequestID"`
 			CheckoutRequestID string `json:"CheckoutRequestID"`
-			ResultCode int `json:"ResultCode"`
-			CallbackMetaData struct{
-				Item []struct{
-					Name string `json:"Name"`
+			ResultCode        int    `json:"ResultCode"`
+			CallbackMetaData  struct {
+				Item []struct {
+					Name  string      `json:"Name"`
 					Value interface{} `json:"value"`
 				} `json:"Item"`
 			} `json:"CallbackMetaData"`
@@ -66,7 +67,7 @@ type CallBackResponse struct {
 	} `json:"Body"`
 }
 
-func (d *Daraja) MakeSTKPushRequest(mpesaConfig LipaNaMpesaPayload) (*LipaNaMpesaResponse, *ErrorResponse){
+func (d *Daraja) MakeSTKPushRequest(mpesaConfig LipaNaMpesaPayload) (*LipaNaMpesaResponse, *ErrorResponse) {
 	t := time.Now()
 	layout := "20060102150405"
 	timestamp := t.Format(layout)
@@ -82,7 +83,7 @@ func (d *Daraja) MakeSTKPushRequest(mpesaConfig LipaNaMpesaPayload) (*LipaNaMpes
 }
 
 func MapExpressGinCallBack(gingroup *gin.RouterGroup, callBackUrl string, callback ExpressCallbackFunc) {
-	gingroup.POST(callBackUrl, func(context *gin.Context){
+	gingroup.POST(callBackUrl, func(context *gin.Context) {
 		var callbackResponse CallBackResponse
 		err := context.BindJSON(&callbackResponse)
 		if err != nil {

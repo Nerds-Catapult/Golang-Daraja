@@ -6,11 +6,11 @@ import (
 )
 
 type ErrorResponse struct {
-	RequestID string `json:"requestId"`
-	ErrorCode string `json:"errorCode"`
+	RequestID    string `json:"requestId"`
+	ErrorCode    string `json:"errorCode"`
 	ErrorMessage string `json:"errorMessage"`
-	error error `json:"error"`
-	Raw string `json:"raw"`
+	error        error  `json:"error"`
+	Raw          string `json:"raw"`
 }
 
 func (e *ErrorResponse) Error() string {
@@ -25,39 +25,39 @@ func (e *ErrorResponse) Error() string {
 }
 
 type RegisterUrlConfig struct {
-	ShortCode string `json:"ShortCode"`
-	ResponseType string `json:"ResponseType"`
+	ShortCode       string `json:"ShortCode"`
+	ResponseType    string `json:"ResponseType"`
 	ConfirmationURL string `json:"ConfirmationURL"`
-	ValidationURL string `json:"ValidationURL"`
+	ValidationURL   string `json:"ValidationURL"`
 }
 
 type TransactionStatus struct {
-	Initiator string `json:"Initiator"`
+	Initiator          string `json:"Initiator"`
 	SecurityCredential string `json:"SecurityCredential"`
-	CommandID string `json:"CommandID"`
-	TransactionID string `json:"TransactionID"`
-	PartyA string `json:"PartyA"`
-	IdentifierType string `json:"IdentifierType"`
-	ResultURL string `json:"ResultURL"`
-	QueueTimeOutURL string `json:"QueueTimeOutURL"`
-	Remarks string `json:"Remarks"`
-	Occasion string `json:"Occasion"`
+	CommandID          string `json:"CommandID"`
+	TransactionID      string `json:"TransactionID"`
+	PartyA             string `json:"PartyA"`
+	IdentifierType     string `json:"IdentifierType"`
+	ResultURL          string `json:"ResultURL"`
+	QueueTimeOutURL    string `json:"QueueTimeOutURL"`
+	Remarks            string `json:"Remarks"`
+	Occasion           string `json:"Occasion"`
 }
 
 type BalanceQuery struct {
-	Initiator string `json:"Initiator"`
+	Initiator          string `json:"Initiator"`
 	SecurityCredential string `json:"SecurityCredential"`
-	CommandID string `json:"CommandID"`
-	PartyA string `json:"PartyA"`
-	IdentifierType string `json:"IdentifierType"`
-	Remarks string `json:"Remarks"`
-	QueueTimeOutURL string `json:"QueueTimeOutURL"`
-	ResultURL string `json:"ResultURL"`
+	CommandID          string `json:"CommandID"`
+	PartyA             string `json:"PartyA"`
+	IdentifierType     string `json:"IdentifierType"`
+	Remarks            string `json:"Remarks"`
+	QueueTimeOutURL    string `json:"QueueTimeOutURL"`
+	ResultURL          string `json:"ResultURL"`
 }
 
 type C2BURLRegistration struct {
-	ShortCode string `json:"ShortCode"`
-	ResponseType string `json:"ResponseType"`
+	ShortCode       string `json:"ShortCode"`
+	ResponseType    string `json:"ResponseType"`
 	ConfirmationURL string `json:"ConfirmationURL"`
-	ValidationURL string `json:"ValidationURL"`
+	ValidationURL   string `json:"ValidationURL"`
 }

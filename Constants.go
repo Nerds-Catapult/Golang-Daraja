@@ -1,6 +1,5 @@
 package darajaAuth
 
-
 const (
 	baseUrlSandbox                    = "https://sandbox.safaricom.co.ke"
 	baseUrlLive                       = "https://api.safaricom.co.ke"

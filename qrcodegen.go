@@ -1,6 +1,5 @@
 package darajaAuth
 
-
 type TransactionType string
 
 const (
@@ -12,21 +11,21 @@ const (
 )
 
 type QrPayload struct {
-	MerchantName string `json:"MerchantName"`
-	RefNo string `json:"RefNo"`
-	Amount string `json:"Amount"`
-	TransactionType TransactionType `json:"TransactionType"`
-	CreditPartyIdentifier string `json:"CreditPartyIdentifier"`
+	MerchantName          string          `json:"MerchantName"`
+	RefNo                 string          `json:"RefNo"`
+	Amount                string          `json:"Amount"`
+	TransactionType       TransactionType `json:"TransactionType"`
+	CreditPartyIdentifier string          `json:"CreditPartyIdentifier"`
 }
 
 type QrResponse struct {
-	ResponseCode string `json:"ResponseCode"`
-	RequestID string `json:"RequestID"`
+	ResponseCode        string `json:"ResponseCode"`
+	RequestID           string `json:"RequestID"`
 	ResponseDescription string `json:"ResponseDescription"`
-	QrCode string `json:"QrCode"`
+	QrCode              string `json:"QrCode"`
 }
 
-func (d *Daraja) MakeQRCodeRequest(payload QrPayload) (*QrResponse, *ErrorResponse){
+func (d *Daraja) MakeQRCodeRequest(payload QrPayload) (*QrResponse, *ErrorResponse) {
 	secureResponse, err := performSecurePostRequest[*QrResponse](payload, endpointQrCode, d)
 	if err != nil {
 		return nil, err
